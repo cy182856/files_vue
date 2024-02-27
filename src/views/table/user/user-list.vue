@@ -13,16 +13,16 @@
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
-        Search
+        查询
       </el-button>
       <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
-        Add
+        新增
       </el-button>
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
-        Export
+        导出
       </el-button>
       <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
-        reviewer
+        发布
       </el-checkbox>
     </div>
 
@@ -36,27 +36,27 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
-      <el-table-column label="编号" prop="userCode" sortable="custom" align="center" width="80" :class-name="getSortClass('userCode')">
+      <el-table-column label="编号" prop="userCode" align="center" width="80">
         <template slot-scope="{row}">
           <span>{{ row.userCode }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="用户名" prop="userName" sortable="custom" align="center" width="150" :class-name="getSortClass('userName')">
+      <el-table-column label="用户名" prop="userName" align="center" width="150">
         <template slot-scope="{row}">
           <span>{{ row.userName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="昵称" prop="nikeName" sortable="custom" align="center" width="80" :class-name="getSortClass('nikeName')">
+      <el-table-column label="昵称" prop="nikeName" align="center" width="80">
         <template slot-scope="{row}">
           <span>{{ row.nikeName }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="类型" prop="userType" sortable="custom" align="center" width="80" :class-name="getSortClass('userType')">
+      <el-table-column label="类型" prop="userType" align="center" width="80">
         <template slot-scope="{row}">
           <span>{{ row.userType }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="电话" prop="mobile" sortable="custom" align="center" width="120" :class-name="getSortClass('mobile')">
+      <el-table-column label="电话" prop="mobile" align="center" width="120">
         <template slot-scope="{row}">
           <span>{{ row.mobile }}</span>
         </template>
@@ -110,10 +110,10 @@
           </el-tag>
         </template>
       </el-table-column> -->
-      <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            Edit
+            编辑
           </el-button>
           <!-- <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
             Publish
@@ -122,7 +122,7 @@
             Draft
           </el-button> -->
           <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
-            Delete
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -182,10 +182,10 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
-          Cancel
+          取消
         </el-button>
         <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
-          Confirm
+          提交
         </el-button>
       </div>
     </el-dialog>
